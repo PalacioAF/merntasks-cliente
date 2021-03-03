@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
+import Spinner from '../spinner/Spinner';
+
 
 const Login = (props) => {
 
@@ -12,9 +14,15 @@ const Login = (props) => {
 
     const authContext=useContext(AuthContext);
     const {mensaje,autenticado,iniciarSesion}=authContext;
+
+    //Spinner
+    const [cargando, guardarCargando] = useState(false);
+
+
      
     // En caso de que el password o usuario no exista
     useEffect(() => {
+        guardarCargando(false);
         if(autenticado) {
             props.history.push('/proyectos');
         }
@@ -45,8 +53,11 @@ const Login = (props) => {
         // Validar que no haya campos vacios
         if(email.trim() === '' || password.trim() === '') {
             mostrarAlerta('Todos los campos son obligatorios', 'alerta-error');
+            return;
         }
 
+        //Spinner
+        guardarCargando(true);
         // Pasarlo al action
         iniciarSesion({ email, password });
     }
@@ -54,7 +65,9 @@ const Login = (props) => {
     return ( 
         <div className="form-usuario">
             { alerta ? ( <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> )  : null }
+            
             <div className="contenedor-form sombra-dark">
+            {cargando? <Spinner />:(<>
                 <h1>Iniciar Sesión</h1>
                 <form 
                 onSubmit={onSubmit}
@@ -92,7 +105,10 @@ const Login = (props) => {
                 <Link to={'/nueva-cuenta'} className="enlace-cuenta">
                     Obtener Cuenta
                 </Link>
+                </>
+                )}
             </div>
+           
         </div>
      );
 }
