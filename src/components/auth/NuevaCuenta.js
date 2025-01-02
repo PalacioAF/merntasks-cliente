@@ -3,6 +3,14 @@ import {Link} from 'react-router-dom'
 import AlertaContext from '../../context/alertas/alertaContext'
 import AuthContext from '../../context/autenticacion/authContext'
 
+import {
+    FormUsuario,
+    FormUsuarioContaine,
+    CampoForm,
+    CampoFormLabel,
+    Input
+  } from "./mixins";
+
 const NuevaCuenta = (props) => {
 
     //extraer los valores del context
@@ -75,16 +83,16 @@ const NuevaCuenta = (props) => {
     }
 
     return ( 
-        <div className="form-usuario">
+        <FormUsuario>
             { alerta ? ( <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> )  : null }
-            <div className="contenedor-form sombra-dark">
+            <FormUsuarioContaine>
                 <h1>Obtener Cuenta</h1>
                 <form 
                 onSubmit={onSubmit}
                 >
-                    <div className="campo-form">
-                        <label htmlFor="nombre">Nombre</label>
-                        <input
+                    <CampoForm>
+                        <CampoFormLabel htmlFor="nombre">Nombre</CampoFormLabel>
+                        <Input
                         type="text"
                         id="nombre"
                         name="nombre"
@@ -92,10 +100,10 @@ const NuevaCuenta = (props) => {
                         value={nombre}
                         onChange={onChange}
                         />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="email">Email</label>
-                        <input
+                    </CampoForm>
+                    <CampoForm>
+                        <CampoFormLabel htmlFor="email">Email</CampoFormLabel>
+                        <Input
                         type="email"
                         id="email"
                         name="email"
@@ -103,10 +111,10 @@ const NuevaCuenta = (props) => {
                         value={email}
                         onChange={onChange}
                         />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="password">Password</label>
-                        <input
+                    </CampoForm>
+                    <CampoForm>
+                        <CampoFormLabel htmlFor="password">Password</CampoFormLabel>
+                        <Input
                         type="password"
                         id="password"
                         name="password"
@@ -114,10 +122,10 @@ const NuevaCuenta = (props) => {
                         value={password}
                         onChange={onChange}
                         />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="confirmar">Confirmar Password</label>
-                        <input
+                    </CampoForm>
+                    <CampoForm>
+                        <CampoFormLabel htmlFor="confirmar">Confirmar Password</CampoFormLabel>
+                        <Input
                         type="password"
                         id="confirmar"
                         name="confirmar"
@@ -125,20 +133,20 @@ const NuevaCuenta = (props) => {
                         value={confirmar}
                         onChange={onChange}
                         />
-                    </div>
-                    <div className="campo-form">
-                        <input
+                    </CampoForm>
+                    <CampoForm>
+                        <Input
                         type="submit"
                         className="btn btn-primario btn-block"
                         value="Registrarme"
                         />
-                    </div>   
+                    </CampoForm>   
                 </form>
                 <Link to={'/'} className="enlace-cuenta">
                     Volver a Iniciar Sesión
                 </Link>
-            </div>
-        </div>
+            </FormUsuarioContaine>
+        </FormUsuario>
      );
 }
  

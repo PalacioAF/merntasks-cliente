@@ -1,6 +1,7 @@
 import React,{useContext} from 'react'
 import proyectoContext from '../../context/proyectos/proyectoContext'
 import TareaContext from '../../context/tareas/tareaContext'
+import { ButtonBlank } from "./mixins";
 
 const Proyecto = ({proyecto}) => {
     const proyectosContext=useContext(proyectoContext);
@@ -19,13 +20,11 @@ const Proyecto = ({proyecto}) => {
 
     return ( 
         <li>
-            <button
-            type="button"
-            className="btn btn-blank"
+            <ButtonBlank
             onClick={()=>seleccionarProyecto(proyecto._id)}
             >
                 {proyecto.nombre}
-            </button>
+            </ButtonBlank>
         </li>
      );
 }

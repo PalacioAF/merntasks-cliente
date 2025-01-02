@@ -1,6 +1,7 @@
 import React from 'react'
 import NuevoProyecto from '../proyectos/NuevoProyecto'
 import ListadoProyectos from '../proyectos/ListadoProyectos'
+import { Div } from './mixins'
 
 const Sidebar = () => {
     return ( 
@@ -8,10 +9,10 @@ const Sidebar = () => {
             <h1>MERN<span>Tasks</span></h1>
 
             <NuevoProyecto/>
-            <div className="proyectos">
+            <Div>
                 <h2>Tus Proyectos</h2>
                 <ListadoProyectos/>
-            </div>
+            </Div>
         </aside>
      );
 }

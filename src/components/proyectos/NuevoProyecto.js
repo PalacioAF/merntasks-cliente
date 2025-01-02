@@ -1,5 +1,6 @@
 import React,{Fragment, useState,useContext,useEffect} from 'react'
 import proyectoContext from '../../context/proyectos/proyectoContext'
+import { ButtonBlock, FormularioNuevoProyecto ,Input, InputSubmit, MensajeError } from './mixins'
 
 const NuevoProyecto = () => {
 
@@ -62,47 +63,36 @@ const NuevoProyecto = () => {
         mostrarFormulario();
     }
 
-    return ( 
-        <Fragment>
-        <button
-        type="button"
-        className="btn btn-block btn-primario"
-        onClick={onClickFormulario}
-        >Nuevo Proyecto
-        </button>
+    return (
+      <Fragment>
+        <ButtonBlock type="button" onClick={onClickFormulario}>
+          Nuevo Proyecto
+        </ButtonBlock>
 
-        {
-            formulario?
-            (   <form
-                className="formulario-nuevo-proyecto"
-                onSubmit={onSubmitProyecto}
-                >
-                    <input
-                    type="text"
-                    className="input-text"
-                    placeholder="Nombre Proyecto"
-                    name="nombre"
-                    onChange={onChangeProyecto}
-                    value={nombre}
-                    />
-        
-                    <input
-                    type="submit"
-                    className="btn btn-primario btn-block"
-                    value={proyectoseleccionado?"Editar Proyecto":"Agregar Proyecto"}
-                    />
-        
-                </form>)
-            :
-            (
-                null
-            )
-        }
+        {formulario ? (
+          <FormularioNuevoProyecto onSubmit={onSubmitProyecto}>
+            <Input
+              type="text"
+              placeholder="Nombre Proyecto"
+              name="nombre"
+              onChange={onChangeProyecto}
+              value={nombre}
+            />
 
+            <InputSubmit
+              type="submit"
+              value={
+                proyectoseleccionado ? "Editar Proyecto" : "Agregar Proyecto"
+              }
+            />
+          </FormularioNuevoProyecto>
+        ) : null}
 
-        {errorformulario?<p className="mensaje error">El nombre del Proyecto es obligatorio</p>:null}
-        </Fragment>
-     );
+        {errorformulario ? (
+          <MensajeError>El nombre del Proyecto es obligatorio</MensajeError>
+        ) : null}
+      </Fragment>
+    );
 }
  
 export default NuevoProyecto;

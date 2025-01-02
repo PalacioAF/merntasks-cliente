@@ -4,6 +4,13 @@ import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
 import Spinner from '../spinner/Spinner';
+import {
+  FormUsuario,
+  FormUsuarioContaine,
+  CampoForm,
+  CampoFormLabel,
+  Input
+} from "./mixins";
 
 
 const Login = (props) => {
@@ -63,18 +70,18 @@ const Login = (props) => {
     }
 
     return ( 
-        <div className="form-usuario">
+        <FormUsuario>
             { alerta ? ( <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> )  : null }
             
-            <div className="contenedor-form sombra-dark">
+            <FormUsuarioContaine>
             {cargando? <Spinner />:(<>
                 <h1>Iniciar Sesión</h1>
                 <form 
                 onSubmit={onSubmit}
                 >
-                    <div className="campo-form">
-                        <label htmlFor="email">Email</label>
-                        <input
+                    <CampoForm>
+                        <CampoFormLabel htmlFor="email">Email</CampoFormLabel>
+                        <Input
                         type="email"
                         id="email"
                         name="email"
@@ -82,10 +89,10 @@ const Login = (props) => {
                         value={email}
                         onChange={onChange}
                         />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="password">Password</label>
-                        <input
+                    </CampoForm>
+                    <CampoForm>
+                        <CampoFormLabel htmlFor="password">Password</CampoFormLabel>
+                        <Input
                         type="password"
                         id="password"
                         name="password"
@@ -93,23 +100,22 @@ const Login = (props) => {
                         value={password}
                         onChange={onChange}
                         />
-                    </div>
-                    <div className="campo-form">
-                        <input
+                    </CampoForm>
+                    <CampoForm className="campo-form">
+                        <Input
                         type="submit"
                         className="btn btn-primario btn-block"
                         value="Iniciar Sesión"
                         />
-                    </div>   
+                    </CampoForm>   
                 </form>
                 <Link to={'/nueva-cuenta'} className="enlace-cuenta">
                     Obtener Cuenta
                 </Link>
                 </>
                 )}
-            </div>
-           
-        </div>
+            </FormUsuarioContaine>
+        </FormUsuario>
      );
 }
  

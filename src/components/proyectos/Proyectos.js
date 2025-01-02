@@ -4,6 +4,7 @@ import Barra from '../layout/Barra';
 import FormTarea from '../tareas/FormTarea';
 import ListadoTareas from '../tareas/ListadoTareas';
 import AuthContext from '../../context/autenticacion/authContext';
+import {ContenedorApp , ContenedorTareas, } from './mixins'
 
 
 const Proyectos = () => {
@@ -18,20 +19,20 @@ const Proyectos = () => {
     }, [])
 
     return ( 
-        <div className="contenedor-app">
+        <ContenedorApp>
             <Sidebar/>
             <div className="seccion-principal">
                 <Barra/>
                 <main>
                     <FormTarea/>
 
-                    <div className="contenedor-tareas">
+                    <ContenedorTareas>
                         <ListadoTareas/>
-                    </div>
+                    </ContenedorTareas>
                 </main>
             </div>
 
-        </div>
+        </ContenedorApp>
      );
 }
  

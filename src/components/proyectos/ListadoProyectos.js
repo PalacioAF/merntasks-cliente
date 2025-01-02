@@ -3,6 +3,7 @@ import Proyecto from './Proyecto';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
 import AlertaContext from '../../context/alertas/alertaContext';
+import { ListadoProyectosUl, Alert } from "./mixins";
 
 const ListadoProyectos = () => {
 
@@ -25,28 +26,26 @@ const ListadoProyectos = () => {
 
     if(!proyectos) return <p>No hay proyectos, comienza creando uno</p>;
 
-
-
-    return ( 
-        <ul
-        className="listado-proyectos"
-        >
-            { alerta   ? ( <div className={`alerta ${alerta.categoria} `}>{alerta.msg}</div>  ) : null  }
-            <TransitionGroup>
-            {proyectos.map(proyecto=>(
-                <CSSTransition
-                key={proyecto._id}
-                timeout={200}
-                classNames="proyecto"
-                >
-                    <Proyecto
-                    proyecto={proyecto}
-                    />
-                </CSSTransition>
-            ))}
-            </TransitionGroup>
-        </ul>
-     );
+    return (
+      <ListadoProyectosUl>
+        {alerta ? (
+          <Alert categoria={alerta.categoria}>
+            {alerta.msg}
+          </Alert>
+        ) : null}
+        <TransitionGroup>
+          {proyectos.map((proyecto) => (
+            <CSSTransition
+              key={proyecto._id}
+              timeout={200}
+              classNames="proyecto"
+            >
+              <Proyecto proyecto={proyecto} />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </ListadoProyectosUl>
+    );
 }
  
 export default ListadoProyectos;

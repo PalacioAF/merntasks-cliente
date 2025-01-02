@@ -1,5 +1,6 @@
 import React,{useEffect,useContext}  from 'react';
 import AuthContext from '../../context/autenticacion/authContext';
+import {AppHeader, NombreUsuario, Span, Nav, Button} from './mixins'
 
 const Barra = () => {
         // Extraer la información de autenticación
@@ -12,17 +13,16 @@ const Barra = () => {
     }, []);
 
     return ( 
-        <header className="app-header">
-             {usuario ? <p className="nombre-usuario">Hola <span>{usuario.nombre} </span> </p> : null}
+        <AppHeader>
+             {usuario ? <NombreUsuario>Hola <Span>{usuario.nombre} </Span> </NombreUsuario> : null}
 
-            <nav className="nav-principal">
-                <button 
-                    className="btn btn-blank cerrar-sesion"
+            <Nav>
+                <Button 
                     onClick={() => cerrarSesion() }
                 >Cerrar Sesión
-                </button>
-            </nav>
-        </header>
+                </Button>
+            </Nav>
+        </AppHeader>
      );
 }
  
