@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FormUsuario = styled.div`
-    background-color: var(--gris2);
+    background-color: #2f3848;
     height: 100vh;
     min-height: 800px;
     display: flex;
@@ -13,7 +13,7 @@ export const FormUsuarioContaine = styled.div`
   padding: 5rem 3rem;
   max-width: 500px;
   width: 95%;
-  background-color: var(--blanco);
+  background-color: #ffffff;
   border-radius: 1rem;
   -webkit-box-shadow: 0px 6px 11px -8px rgba(0, 0, 0, 0.9);
   -moz-box-shadow: 0px 6px 11px -8px rgba(0, 0, 0, 0.9);
@@ -31,7 +31,7 @@ export const CampoForm = styled.div`
 
 export const CampoFormLabel = styled.label`
   flex: 0 0 100px;
-  font-family: var(--textFont);
+  font-family: "Roboto";
 `;
 
 export const Input = styled.input`

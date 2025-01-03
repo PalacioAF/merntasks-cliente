@@ -1,6 +1,7 @@
 import React,{useState,useContext} from 'react'
 import proyectoContext from '../../context/proyectos/proyectoContext'
 import TareaContext from '../../context/tareas/tareaContext'
+import { ContaineTarea, NombreTarea, Estado, ButtonCompleto , ButtonIncompleto, Acciones, ButtonPrimario, ButtonSecundario } from "./mixins";
 
 const Tarea = ({tarea}) => {
     const proyectosContext=useContext(proyectoContext);
@@ -33,46 +34,39 @@ const Tarea = ({tarea}) => {
         guardarTareaActual(tarea);
     }
 
-    return ( 
-        <li className="tarea sombra">
-            <p>{tarea.nombre}</p>
-            
-            <div className="estado">
-                {tarea.estado?
-                <button
-                type="button"
-                className="completo"
-                onClick={()=>cambiarEstado(tarea)}>
-                    Completo
-                </button>
-                :
-                <button
-                type="button"
-                className="incompleto"
-                onClick={()=>cambiarEstado(tarea)}>
-                    Incompleto
-                </button>
-                }
+    return (
+      <ContaineTarea>
+        <NombreTarea>{tarea.nombre}</NombreTarea>
 
-            </div>
+        <Estado>
+          {tarea.estado ? (
+            <ButtonCompleto type="button" onClick={() => cambiarEstado(tarea)}>
+              Completo
+            </ButtonCompleto>
+          ) : (
+            <ButtonIncompleto
+              type="button"
+              onClick={() => cambiarEstado(tarea)}
+            >
+              Incompleto
+            </ButtonIncompleto>
+          )}
+        </Estado>
 
-            <div className="acciones">
-                <button
-                 type="button"
-                 className="btn btn-primario"
-                 onClick={()=>seleccionarTarea(tarea)}>
-                     Editar
-                </button>
+        <Acciones>
+          <ButtonPrimario type="button" onClick={() => seleccionarTarea(tarea)}>
+            Editar
+          </ButtonPrimario>
 
-                <button
-                 type="button"
-                 className="btn btn-secundario"
-                 onClick={()=>tareaEliminar(tarea._id)}>
-                    Eliminar
-                </button>
-            </div>
-    </li>
-     );
+          <ButtonSecundario
+            type="button"
+            onClick={() => tareaEliminar(tarea._id)}
+          >
+            Eliminar
+          </ButtonSecundario>
+        </Acciones>
+      </ContaineTarea>
+    );
 }
  
 export default Tarea;

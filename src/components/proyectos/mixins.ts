@@ -110,7 +110,7 @@ export const Input = styled.input`
 export const InputSubmit = styled.input`
   margin: 0;
   padding: 15px 0;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 1.4rem;
   font-weight: 400;
   border-radius: 0.5rem;

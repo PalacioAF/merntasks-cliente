@@ -3,6 +3,7 @@ import Tarea from './Tarea'
 import proyectoContext from '../../context/proyectos/proyectoContext'
 import TareaContext from '../../context/tareas/tareaContext'
 import {CSSTransition,TransitionGroup} from 'react-transition-group';
+import { ListaTareas, TareaItem, Button } from './mixins'
 
 
 const ListadoTareas = () => {
@@ -27,46 +28,31 @@ const ListadoTareas = () => {
         guardarProyectoSeleccionado(proyectoActual);
     }
 
-    return ( 
-        <Fragment>
+    return (
+      <Fragment>
         <h2>Proyecto: {proyectoActual.nombre}</h2>
 
-        <ul className="listado-tareas">
-            {tareasproyecto.length===0
-            ?
-            (<li className="tarea">No hay Tareas</li>)
-            :
-            (
+        <ListaTareas>
+          {tareasproyecto.length === 0 ? (
+            <TareaItem>No hay Tareas</TareaItem>
+          ) : (
             <TransitionGroup>
-            {tareasproyecto.map((tarea)=>(
-                <CSSTransition
-                key={tarea._id}
-                timeout={200}
-                classNames="tarea"
-                >
-                    <Tarea
-                    tarea={tarea}
-                    />
+              {tareasproyecto.map((tarea) => (
+                <CSSTransition key={tarea._id} timeout={200} classNames="tarea">
+                  <Tarea tarea={tarea} />
                 </CSSTransition>
-            ))}
+              ))}
             </TransitionGroup>
-            )
-            }
-        </ul>
-        <button
-         type="button"
-         className="btn btn-eliminar"
-         onClick={onClickEditar}>
-            Editar Proyecto  &equiv;
-        </button>
-        <button
-         type="button"
-         className="btn btn-eliminar"
-         onClick={onClickEliminar}>
-            Eliminar Proyecto &times;
-        </button>
-        </Fragment>
-     );
+          )}
+        </ListaTareas>
+        <Button type="button" onClick={onClickEditar}>
+          Editar Proyecto &equiv;
+        </Button>
+        <Button type="button" onClick={onClickEliminar}>
+          Eliminar Proyecto &times;
+        </Button>
+      </Fragment>
+    );
 }
  
 export default ListadoTareas;

@@ -1,6 +1,14 @@
 import React,{useState,useContext,useEffect} from 'react'
 import proyectoContext from '../../context/proyectos/proyectoContext'
 import TareaContext from '../../context/tareas/tareaContext'
+import {
+  Containe,
+  Form,
+  ContenedorInput,
+  Input,
+  InputSubmit,
+  MensajeError,
+} from "./mixins";
 
 const FormTarea = () => {
     const [tarea,guardarTarea]=useState({
@@ -73,32 +81,30 @@ const FormTarea = () => {
     }
 
 
-    return ( 
-        <div className="formulario">
-            <form
-            onSubmit={onSubmit}>
-                <div className="contenedor-input">
-                    <input
-                        type="text"
-                        className="input-text"
-                        placeholder="Nombre Tarea..."
-                        name="nombre"
-                        value={nombre}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="contenedor-input">
-                <input
-                    type="submit"
-                    className="btn btn-primario btn-submit btn-block"
-                    value={tareaseleccionada?"Editar Tarea":"Agregar Tarea"}
+    return (
+      <Containe>
+        <Form onSubmit={onSubmit}>
+          <ContenedorInput>
+            <Input
+              type="text"
+              placeholder="Nombre Tarea..."
+              name="nombre"
+              value={nombre}
+              onChange={handleChange}
             />
-                </div>
-
-            </form>
-            {errortarea?<p className="mensaje error">El nombre de la Tarea es obligatorio</p>:null}
-        </div>
-     );
+          </ContenedorInput>
+          <ContenedorInput>
+            <InputSubmit
+              type="submit"
+              value={tareaseleccionada ? "Editar Tarea" : "Agregar Tarea"}
+            />
+          </ContenedorInput>
+        </Form>
+        {errortarea ? (
+          <MensajeError>El nombre de la Tarea es obligatorio</MensajeError>
+        ) : null}
+      </Containe>
+    );
 }
  
 export default FormTarea;

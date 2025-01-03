@@ -31,7 +31,7 @@ export const Nav = styled.nav`
 export const Button = styled.button`
   margin: 0;
   padding: 0;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 1.4rem;
   font-weight: 400;
   border-radius: 0.5rem;
